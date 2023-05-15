@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class WalletForm extends Component {
   render() {
@@ -8,4 +9,8 @@ class WalletForm extends Component {
   }
 }
 
-export default WalletForm;
+const mapStateToProps = (globalState) => {
+  console.log(globalState);
+};
+
+export default connect(mapStateToProps)(WalletForm);
