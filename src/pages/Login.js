@@ -9,6 +9,7 @@ class Login extends React.Component {
     password: '',
   };
 
+  // adicionando as informações ao state local.
   handleEmailChange = (event) => {
     this.setState({ email: event.target.value });
   };
@@ -17,6 +18,7 @@ class Login extends React.Component {
     this.setState({ password: event.target.value });
   };
 
+  // essa validação retornará o boleano que será colocado dentro da prop "disabled" do botão.
   isFormValid = () => {
     const { email, password } = this.state;
     const emailPattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
@@ -24,6 +26,7 @@ class Login extends React.Component {
     return emailPattern.test(email) && password.length >= minPasswordLength;
   };
 
+  // se o botão estiver ativo e receber um click, será dispachada a action setEmail com a informação de email guardada no state e também será redirecionado para a rota da carteira.
   handleLogin = () => {
     const { isFormValid, history, dispatch } = this.props;
 
@@ -44,7 +47,8 @@ class Login extends React.Component {
         <input
           type="email"
           id="email-input"
-          data-testid="email-input"
+          data-testid="email-input" // requisito pedido
+          // pattern é um requisio feito pelo chatgpt para validação do formato do email.
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
           value={ email }
           onChange={ this.handleEmailChange }
@@ -58,7 +62,7 @@ class Login extends React.Component {
           type="password"
           id="password-input"
           data-testid="password-input"
-          minLength={ 6 }
+          minLength={ 6 } // requisito pedido
           value={ password }
           onChange={ this.handlePasswordChange }
           required
