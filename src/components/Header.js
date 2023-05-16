@@ -8,6 +8,23 @@ class Header extends Component {
     exchange: 'BRL',
   };
 
+  componentDidMount() {
+    this.somaExpenses();
+  }
+
+  somaExpenses = () => {
+    const { totalExpenses, rates } = this.props;
+    const somaTotal = totalExpenses
+      .reduce((previousValue, { currency, expenseValue }) => {
+        const convertedValue = expenseValue * rates[currency].ask;
+        return previousValue + convertedValue;
+      }, 0);
+
+    this.setState({ totalExpenses: somaTotal });
+
+    return somaTotal;
+  };
+
   render() {
     const { email } = this.props;
     const { totalExpenses, exchange } = this.state;

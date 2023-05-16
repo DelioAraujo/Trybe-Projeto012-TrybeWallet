@@ -26,7 +26,7 @@ class WalletForm extends Component {
     });
   };
 
-  handleClick = () => {
+  handleClick = async () => {
     this.setState((prevState) => ({
       id: prevState.id + 1,
     }));
@@ -34,7 +34,7 @@ class WalletForm extends Component {
     const { expenseValue, description, currency, method, tag, id } = this.state;
     const newExpense = { expenseValue, description, currency, method, tag, id };
 
-    const rates = apiRequest();
+    const rates = await apiRequest(); // Aguarda a conclusão da chamada da API
 
     const { dispatch } = this.props;
     dispatch(newExpenseUpdate(newExpense, rates));

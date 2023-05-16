@@ -1,4 +1,4 @@
-import { SET_CURRENCIES } from '../actions';
+import { SET_CURRENCIES, SET_NEW_EXPENCIE } from '../actions';
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const initialState = {
@@ -8,7 +8,7 @@ const initialState = {
   idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
 };
 
-export const walletReducer = (state = initialState, action) => {
+const walletReducer = (state = initialState, action) => {
   switch (action.type) {
   case SET_CURRENCIES:
     return {
@@ -25,3 +25,5 @@ export const walletReducer = (state = initialState, action) => {
     return state;
   }
 };
+
+export default walletReducer;
