@@ -28,9 +28,10 @@ class Login extends React.Component {
 
   // se o botão estiver ativo e receber um click, será dispachada a action setEmail com a informação de email guardada no state e também será redirecionado para a rota da carteira.
   handleLogin = () => {
-    const { isFormValid, history, dispatch } = this.props;
+    const { history, dispatch } = this.props;
+    const isFormValid = this.isFormValid();
 
-    if (isFormValid()) {
+    if (isFormValid) {
       const { email } = this.state;
       dispatch(setEmail(email));
       history.push('/carteira');

@@ -1,3 +1,5 @@
+import { SET_EMAIL } from '../actions';
+
 const initialState = {
   email: '',
 };
