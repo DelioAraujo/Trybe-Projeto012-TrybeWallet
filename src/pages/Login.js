@@ -80,7 +80,6 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-  isFormValid: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
     // other expected properties of the history object
