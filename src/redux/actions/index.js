@@ -17,7 +17,7 @@ export const setCurrency = (currencies) => ({
   payload: currencies,
 });
 
-export const fetchAndSetCurrencies = async (dispatch) => {
+export const fetchAndSetCurrencies = () => async (dispatch) => {
   const currencies = await getCurrencies();
   dispatch(setCurrency(currencies));
 };

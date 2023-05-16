@@ -16,12 +16,16 @@ class WalletForm extends Component {
       <div>
         <form>
           <div>
+            <label htmlFor="value-input">Valor da Despesa:</label>
+            <input type="number" id="value-input" data-testid="value-input" />
+          </div>
+          <div>
             <label htmlFor="description-input">Descrição da Despesa:</label>
             <input type="text" id="description-input" data-testid="description-input" />
           </div>
           <div>
-            <label htmlFor="currency-select">Moeda:</label>
-            <select id="currency-select" data-testid="currency-select">
+            <label htmlFor="currency-input">Moeda:</label>
+            <select id="currency-input" data-testid="currency-input">
               {currencies.map((currency) => (
                 <option key={ currency } value={ currency }>{currency}</option>
               ))}
