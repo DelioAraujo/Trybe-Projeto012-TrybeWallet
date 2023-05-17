@@ -50,6 +50,25 @@ class Table extends Component {
   }
 }
 
+Table.propTypes = {
+  expenses: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string,
+      description: PropTypes.string,
+      currency: PropTypes.string,
+      method: PropTypes.string,
+      tag: PropTypes.string,
+      exchangeRates: PropTypes.objectOf(
+        PropTypes.shape({
+          name: PropTypes.string,
+          ask: PropTypes.string,
+        }),
+      ),
+    }),
+  ),
+}.isRequired;
+
 const mapStateToProps = (globalState) => ({
   expenses: globalState.wallet.expenses,
 });
