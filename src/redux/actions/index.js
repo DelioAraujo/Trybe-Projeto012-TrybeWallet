@@ -22,11 +22,8 @@ export const fetchAndSetCurrencies = () => async (dispatch) => {
 
 // coloca uma nova expense no status global, na chave expensies
 
-export const SET_NEW_EXPENCIE = 'SET_NEW_EXPENCIE';
-export const newExpenseUpdate = (expenses, rates) => ({
-  type: SET_NEW_EXPENCIE,
-  payload: {
-    expenses,
-    rates,
-  },
+export const SET_NEW_EXPENSE = 'SET_NEW_EXPENSE';
+export const newExpenseUpdate = (expenses) => ({
+  type: SET_NEW_EXPENSE,
+  payload: expenses,
 });

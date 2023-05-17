@@ -1,4 +1,4 @@
-import { SET_CURRENCIES, SET_NEW_EXPENCIE } from '../actions';
+import { SET_CURRENCIES, SET_NEW_EXPENSE } from '../actions';
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const initialState = {
@@ -15,11 +15,10 @@ const walletReducer = (state = initialState, action) => {
       ...state,
       currencies: action.payload,
     };
-  case SET_NEW_EXPENCIE:
+  case SET_NEW_EXPENSE:
     return {
       ...state,
       expenses: [...state.expenses, action.payload.expenses],
-      rates: action.payload.rates,
     };
   default:
     return state;

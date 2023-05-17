@@ -6,7 +6,7 @@ import { apiRequest } from '../services/API';
 
 class WalletForm extends Component {
   state = {
-    expenseValue: 0,
+    value: 0,
     description: '',
     currency: 'USD',
     method: 'Dinheiro',
@@ -27,27 +27,35 @@ class WalletForm extends Component {
   };
 
   handleClick = async () => {
-    const rates = await apiRequest(); // Aguarda a conclusão da chamada da API
+    const exchangeRates = await apiRequest(); // Aguarda a conclusão da chamada da API
 
     this.setState((prevState) => ({
       id: prevState.id + 1,
     }));
 
-    const { expenseValue, description, currency, method, tag, id } = this.state;
-    const newExpense = { expenseValue, description, currency, method, tag, id };
+    const { value, description, currency, method, tag, id } = this.state;
+    const newExpense = {
+      value,
+      description,
+      currency,
+      method,
+      tag,
+      id,
+      exchangeRates,
+    };
 
     const { dispatch } = this.props;
-    dispatch(newExpenseUpdate(newExpense, rates));
+    dispatch(newExpenseUpdate(newExpense));
 
     this.setState({
-      expenseValue: '',
+      value: '',
       description: '',
     });
   };
 
   render() {
     const { currencies } = this.props;
-    const { expenseValue, description, currency } = this.state;
+    const { value, description, currency } = this.state;
 
     return (
       <div>
@@ -55,9 +63,9 @@ class WalletForm extends Component {
           <div>
             <label htmlFor="value-input">Valor da Despesa:</label>
             <input
-              name="expenseValue"
+              name="value"
               onChange={ this.handleChange }
-              value={ expenseValue }
+              value={ value }
               type="number"
               id="value-input"
               data-testid="value-input"

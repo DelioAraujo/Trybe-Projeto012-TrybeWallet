@@ -13,18 +13,18 @@ class Header extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { totalExpenses, rates } = this.props;
+    const { expenses } = this.props;
 
-    if (totalExpenses !== prevProps.totalExpenses || rates !== prevProps.rates) {
+    if (expenses !== prevProps.expenses) {
       this.somaExpenses();
     }
   }
 
   somaExpenses = () => {
-    const { totalExpenses, rates } = this.props;
-    const somaTotal = totalExpenses
-      .reduce((previousValue, { currency, expenseValue }) => {
-        const convertedValue = parseFloat(expenseValue) * rates[currency].ask;
+    const { expenses } = this.props;
+    const somaTotal = expenses
+      .reduce((previousValue, { currency, exchangeRates, value }) => {
+        const convertedValue = parseFloat(value) * exchangeRates[currency].ask;
         return previousValue + convertedValue;
       }, 0);
 
@@ -50,8 +50,7 @@ class Header extends Component {
 
 const mapStateToProps = (globalState) => ({
   email: globalState.user.email,
-  totalExpenses: globalState.wallet.expenses,
-  rates: globalState.wallet.rates,
+  expenses: globalState.wallet.expenses,
 });
 
 Header.propTypes = {

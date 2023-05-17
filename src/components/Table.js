@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 class Table extends Component {
   render() {
+    const { totalExpenses, rates } = this.props;
+
     return (
       <table>
         <thead>
@@ -19,15 +21,16 @@ class Table extends Component {
           </tr>
         </thead>
         <tbody>
-          {/* Aqui você pode adicionar as linhas com os dados dos gastos */}
+          
         </tbody>
       </table>
     );
   }
 }
 
-const mapStateToProps = (globalState) => {
-  console.log(globalState);
-};
+const mapStateToProps = (globalState) => ({
+  totalExpenses: globalState.wallet.expenses,
+  rates: globalState.wallet.rates,
+});
 
 export default connect(mapStateToProps)(Table);
