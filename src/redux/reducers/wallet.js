@@ -18,7 +18,7 @@ const walletReducer = (state = initialState, action) => {
   case SET_NEW_EXPENCIE:
     return {
       ...state,
-      expenses: [...expenses.state, action.payload.expense],
+      expenses: [...state.expenses, action.payload.expenses],
       rates: action.payload.rates,
     };
   default:
