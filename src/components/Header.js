@@ -4,24 +4,13 @@ import { connect } from 'react-redux';
 
 class Header extends Component {
   state = {
-    totalExpenses: 0,
+    // totalExpenses: 0,
     exchange: 'BRL',
   };
 
-  componentDidMount() {
-    this.somaExpenses();
-  }
-
-  componentDidUpdate(prevProps) {
-    const { expenses } = this.props;
-
-    if (expenses !== prevProps.expenses) {
-      this.somaExpenses();
-    }
-  }
-
   somaExpenses = () => {
     const { expenses } = this.props;
+    console.log(expenses);
     const somaTotal = expenses
       .reduce((previousValue, { currency, exchangeRates, value }) => {
         const convertedValue = parseFloat(value) * exchangeRates[currency].ask;
@@ -30,18 +19,18 @@ class Header extends Component {
 
     const somaTotalRounded = somaTotal.toFixed(2);
 
-    this.setState({ totalExpenses: somaTotalRounded });
+    // this.setState({ totalExpenses: somaTotalRounded });
 
-    return somaTotal;
+    return somaTotalRounded;
   };
 
   render() {
     const { email } = this.props;
-    const { totalExpenses, exchange } = this.state;
+    const { exchange } = this.state;
     return (
       <>
         <div data-testid="email-field">{email}</div>
-        <div data-testid="total-field">{totalExpenses}</div>
+        <div data-testid="total-field">{this.somaExpenses()}</div>
         <div data-testid="header-currency-field">{exchange}</div>
       </>
     );

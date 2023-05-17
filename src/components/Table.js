@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 
 class Table extends Component {
   render() {
-    const { totalExpenses, rates } = this.props;
-
     return (
       <table>
         <thead>
@@ -21,7 +19,7 @@ class Table extends Component {
           </tr>
         </thead>
         <tbody>
-          
+          {/* Aqui você pode adicionar as linhas com os dados dos gastos */}
         </tbody>
       </table>
     );
