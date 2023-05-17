@@ -12,15 +12,25 @@ class Header extends Component {
     this.somaExpenses();
   }
 
+  componentDidUpdate(prevProps) {
+    const { totalExpenses, rates } = this.props;
+
+    if (totalExpenses !== prevProps.totalExpenses || rates !== prevProps.rates) {
+      this.somaExpenses();
+    }
+  }
+
   somaExpenses = () => {
     const { totalExpenses, rates } = this.props;
     const somaTotal = totalExpenses
       .reduce((previousValue, { currency, expenseValue }) => {
-        const convertedValue = expenseValue * rates[currency].ask;
+        const convertedValue = parseFloat(expenseValue) * rates[currency].ask;
         return previousValue + convertedValue;
       }, 0);
 
-    this.setState({ totalExpenses: somaTotal });
+    const somaTotalRounded = somaTotal.toFixed(2);
+
+    this.setState({ totalExpenses: somaTotalRounded });
 
     return somaTotal;
   };
