@@ -5,17 +5,16 @@ import { deleteExpenseUpdate } from '../redux/actions';
 
 class Table extends Component {
   handleClickExcluir = (id) => {
-    const { expenses } = this.props;
-    const { dispatch } = this.props;
+    const { expenses, dispatch } = this.props;
 
     const newExpenses = expenses.filter((expense) => expense.id !== id);
 
     return dispatch(deleteExpenseUpdate(newExpenses));
   };
 
-  // handleClickEditar = () => {
-
-  // };
+  handleClickEditar = (id) => {
+    dispatch(changeStatusToEdit(id));
+  };
 
   render() {
     const { expenses } = this.props;
@@ -67,7 +66,7 @@ class Table extends Component {
                   <button
                     data-testid="edit-btn"
                     type="button"
-                    // onClick={ () => this.onClickEditBtn() }
+                    onClick={ () => this.handleClickEditar(id) }
                   >
                     Editar despesa
                   </button>
@@ -102,6 +101,8 @@ Table.propTypes = {
 
 const mapStateToProps = (globalState) => ({
   expenses: globalState.wallet.expenses,
+  editor: globalState.wallet.editor,
+  idToEdit: globalState.wallet.idToEdit,
 });
 
 export default connect(mapStateToProps)(Table);

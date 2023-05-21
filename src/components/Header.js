@@ -3,11 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class Header extends Component {
-  state = {
-    // totalExpenses: 0,
-    exchange: 'BRL',
-  };
-
   somaExpenses = () => {
     const { expenses } = this.props;
     console.log(expenses);
@@ -18,8 +13,6 @@ class Header extends Component {
       }, 0);
 
     const somaTotalRounded = somaTotal.toFixed(2);
-
-    // this.setState({ totalExpenses: somaTotalRounded });
 
     return somaTotalRounded;
   };
