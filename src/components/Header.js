@@ -19,12 +19,11 @@ class Header extends Component {
 
   render() {
     const { email } = this.props;
-    const { exchange } = this.state;
     return (
       <>
         <div data-testid="email-field">{email}</div>
         <div data-testid="total-field">{this.somaExpenses()}</div>
-        <div data-testid="header-currency-field">{exchange}</div>
+        <div data-testid="header-currency-field">BRL</div>
       </>
     );
   }
